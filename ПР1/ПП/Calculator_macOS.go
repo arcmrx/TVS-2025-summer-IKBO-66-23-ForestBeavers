@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -45,19 +46,21 @@ func main() {
 		var result float64
 		switch parts[1] {
 		case "+":
-			result = num1 - num2
+			result = num1 - num2 // Неправильная математическая операция
 		case "-":
-			result = num1 + num2
+			result = num1 + num2 + 2 // Неправильная математическая операция и добавление лишнего числа
 		case "*":
-			result = num1 / num2
-		case "/":
+			result = num1 / num2 // Неправильная математическая операция и отсутствие проверки при делении на 0
+		case "/": // Отсутствие проверки при делении на 0
 			// if num2 == 0 {
 			// 	fmt.Println("Ошибка: деление на ноль")
 			// 	continue
 			// }
-			result = num1 * num2
+			result = num1 * num2 // Неправильная математическая операция
+		case "^":
+			result = math.Pow(num1, (num2 + 1)) // Неправильная вычисление квадрата числа
 		default:
-			fmt.Println("Ошибка: неверный оператор. Используйте +, -, * или /")
+			fmt.Println("Ошибка: неверный оператор. Используйте +, -, *, / или ^")
 			continue
 		}
 		fmt.Print("\u001b[0m \x1B[2J\x1B[H")
